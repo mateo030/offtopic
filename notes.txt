@@ -1,0 +1,28 @@
+#### General Categories
+
+Announcements: Updates and news related to the forum.
+Introductions: A space for new members to introduce themselves.
+General Discussion: Open topics that don't fit in other categories.
+Topic-Specific Categories
+Technology: Discussions on software, hardware, and tech trends.
+Health & Wellness: Tips and discussions on maintaining a healthy lifestyle.
+Education: Topics on learning, certifications, and study resources.
+Entertainment: Movies, TV shows, music, and gaming discussions.
+Business & Finance: Entrepreneurship, investments, and personal finance advice.
+Community-Focused Categories
+Hobbies & Interests: Share and discuss personal hobbies and interests.
+Events & Meetups: Organize or share local and virtual events.
+Feedback & Suggestions: Collect ideas and feedback about the forum itself.
+Support Categories
+FAQs and Guides: Resources to help users navigate the forum.
+Help & Support: Technical or general help for users.
+
+#### Learn
+
+turn php object into json (json_encode)
+learn fetch api async await javascript
+
+#### Questions
+
+in my index.php, if i hardcoded the url, the content works. 
+
