@@ -8,7 +8,6 @@ use PDO;
 
 class Thread extends Database 
 {
-
     public function setThread($id, $title, $content, $category)
     {
         try {
@@ -33,7 +32,7 @@ class Thread extends Database
         }
     }
 
-    public function getThreads()
+    public function getAllThreads()
     {
         $query = "SELECT * FROM posts";
         $stmt = $this->connect()->prepare($query);
@@ -43,6 +42,18 @@ class Thread extends Database
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         $_SESSION["threads"] = $result;
-    
+    }
+
+    public static function getThreadById($id)
+    {
+        $query = "SELECT * FROM posts WHERE post_id = :post_id";
+        $stmt = $this->connect()->prepare($query);
+
+        $stmt->bindParam(':post_id', $id);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 }

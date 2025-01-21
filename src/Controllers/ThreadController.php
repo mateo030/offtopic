@@ -7,7 +7,7 @@ use App\Models\Thread;
 Class ThreadController extends Thread
 {
 
-    public function submitThread()
+    public function submit()
     {
 
         session_start();

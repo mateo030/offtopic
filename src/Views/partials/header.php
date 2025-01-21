@@ -16,7 +16,7 @@
 <body>
 <!-- NAV BAR -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid px-4">
+    <div class="container px-4">
         <a class="navbar-brand fs-3 fw-bold" href="/offtopic/">Off-Topic</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

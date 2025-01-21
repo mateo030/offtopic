@@ -9,7 +9,7 @@ Class HomeController extends Thread
 
     public function home()
     {
-        $this->getThreads();
+        $this->getAllThreads();
         loadPages('home');
     }
     
@@ -23,18 +23,10 @@ Class HomeController extends Thread
         loadPages('profile');
     }
 
-    /* ### LOADS UNIQUE THREADS ### */
-
     public function content()
     {
-        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-            $id = intval($_GET['id']);
-
-            loadThread('content', ['id' => $id]);
-        } else {
-            loadThread('content', ['error' => 'No valid ID provided']);
-        }
-        
-
+        $this->getAllThreads();
+        loadPages('content');
     }
+
 }
