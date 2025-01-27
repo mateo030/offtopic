@@ -7,7 +7,7 @@ use App\Models\Thread;
 Class HomeController extends Thread
 {
 
-    public function home()
+    public function index()
     {
         $this->getAllThreads();
         loadPages('home');
@@ -25,7 +25,6 @@ Class HomeController extends Thread
 
     public function content()
     {
-        $this->getAllThreads();
         loadPages('content');
     }
 

@@ -23,7 +23,7 @@ Class ThreadController extends Thread
             redirect('/offtopic/create');
         }
 
-        $this->setThread($_SESSION["user_id"], $title, $content, $category);
+        $this->setThread($_SESSION["userId"], $title, $content, $category);
 
         redirect('/offtopic/');
         die();

@@ -16,18 +16,6 @@ $uri = $_SERVER['REQUEST_URI'];
 
 $router = new Router();
 
-$router->get('/offtopic/', 'HomeController@home');
-$router->get('/offtopic/auth', 'AuthController@index');
-
-$router->post('/offtopic/auth/signup', 'SignupController@signupUser');
-$router->post('/offtopic/auth/signin', 'LoginController@loginUser');
-
-$router->get('/offtopic/profile', 'HomeController@profile');
-$router->get('/offtopic/create', 'HomeController@create');
-$router->get('/offtopic/logout', 'AuthController@logout');
-
-$router->get('/offtopic/content', 'HomeController@content');
-
-$router->post('/offtopic/create/submit', 'ThreadController@submit');
+require __DIR__ . '/src/routes.php';
 
 $router->route($uri);

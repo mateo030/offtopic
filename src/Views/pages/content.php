@@ -1,22 +1,21 @@
 <?php loadPartials('header') ?>
 <?php
 
+use App\Controllers\HomeController;
 list($id, $param) = explode('=', $_SERVER['QUERY_STRING']);
-echo $param;
-
-
+$thread = HomeController::getThreadById($param);
 ?>
 <!-- ### ORIGINAL POST ### -->
 <section class="py-4">
     <div class="container container-custom border-bottom">
         <div>
-            <h4>Who is better, MJ or Lebron?</h4>
+            <h4><?= $thread['title'] ?></h4>
             <div class="p-flex">
                 <small class="text-primary">KobeBryant24</small>
-                <small><span class="text-secondary">Asked</span> today</small>
+                <small><span class="text-secondary">Asked</span> <?= $thread['date_created'] ?></small>
             </div>
         </div>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium quia quos eum minima culpa assumenda quo exercitationem quidem amet hic tenetur harum, error quas soluta, porro quasi eius distinctio quae provident laborum veritatis aspernatur? Excepturi mollitia inventore, totam quibusdam veniam quis unde perspiciatis accusantium ducimus facilis repellat quae voluptatem minima dolores at sit maiores possimus dicta quaerat repudiandae tenetur natus velit! Enim fuga, ratione molestias dicta nemo vel voluptate fugiat voluptatibus eveniet sequi temporibus, ab possimus sapiente? Accusamus minima voluptate iure necessitatibus et. Illo, illum. Excepturi, qui nulla reiciendis corrupti nobis eius hic amet repudiandae nostrum animi saepe pariatur itaque.</p>
+        <p><?= $thread['content'] ?></p>
     </div>
 </section>
 
@@ -24,13 +23,14 @@ echo $param;
 <section>
     <div class="container container-custom pb-4">
         <div class="card p-2">
-            <form>
+            <form action="content/reply" method="POST">
                 <div class="form-floating">
-                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px"></textarea>
+                    <input type="hidden" name="postId" value="<?= $param ?>">
+                    <textarea class="form-control" name="content" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px"></textarea>
                     <label for="floatingTextarea">Reply to post</label>
                 </div>
                 <div class="text-end">
-                    <button type="button" class="btn btn-primary btn-sm mt-2">Comment</button>
+                    <button type="submit" class="btn btn-primary btn-sm mt-2">Comment</button>
                 </div>
             </form>
         </div>

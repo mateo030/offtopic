@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 Class AuthController 
 {
-    public function index()
+    public function auth()
     {
         loadPages('auth');
     }
