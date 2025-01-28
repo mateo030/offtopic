@@ -14,10 +14,10 @@ class Thread
 
             $replies = 0;
 
-            $query = "INSERT INTO posts (userId, title, content, category, replies) VALUES (:userId, :title, :content, :category, :replies);";
+            $query = "INSERT INTO posts (user_id, title, content, category, replies) VALUES (:user_id, :title, :content, :category, :replies);";
             $stmt = DB::connect()->prepare($query);
 
-            $stmt->bindParam(':userId', $id);
+            $stmt->bindParam(':user_id', $id);
             $stmt->bindParam(':title', $title);
             $stmt->bindParam(':content', $content);
             $stmt->bindParam(':category', $category);
@@ -34,7 +34,7 @@ class Thread
 
     public function getAllThreads()
     {
-        $query = "SELECT * FROM posts";
+        $query = "SELECT * FROM posts ORDER BY post_id DESC;";
         $stmt = DB::connect()->prepare($query);
 
         $stmt->execute();
@@ -44,12 +44,12 @@ class Thread
         $_SESSION["threads"] = $result;
     }
 
-    public static function getThreadById($param)
+    public static function getThreadById($postId)
     {
-        $query = "SELECT * FROM posts WHERE post_id = :post_id";
+        $query = "SELECT * FROM posts INNER JOIN users ON posts.user_id = users.id WHERE post_id = :post_id";
         $stmt = DB::connect()->prepare($query);
 
-        $stmt->bindParam('post_id',$param);
+        $stmt->bindParam('post_id',$postId);
 
         $stmt->execute();
 
@@ -58,14 +58,36 @@ class Thread
         return $result;
     }
 
-    public function setReply($postId, $userId, $content)
+    public static function getReplies($postId)
     {
-        $query = "INSERT INTO replies (user_id, post_id, content) VALUES (:user_id, :post_id, :content)";
+
+        $query = "SELECT * 
+                FROM replies
+                INNER JOIN posts ON replies.post_id = posts.post_id
+                INNER JOIN users ON replies.user_id = users.id
+                WHERE replies.post_id = :post_id";
+
         $stmt = DB::connect()->prepare($query);
 
         $stmt->bindParam('post_id',$postId);
-        $stmt->bindParam('user_id',$userId);
-        $stmt->bindParam('content',$content);
+
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+
+    }
+
+    public function setReply($postId, $userId, $reply)
+    {
+
+        $query = "INSERT INTO replies (user_id, post_id, reply) VALUES (:user_id, :post_id, :reply)";
+        $stmt = DB::connect()->prepare($query);
+
+        $stmt->bindParam(':post_id', $postId);
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->bindParam(':reply', $reply);
 
         $stmt->execute();
 

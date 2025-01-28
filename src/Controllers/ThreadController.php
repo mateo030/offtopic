@@ -10,8 +10,6 @@ Class ThreadController extends Thread
     public function submit()
     {
 
-        session_start();
-
         $title = htmlspecialchars($_POST['title']);
         $content = htmlspecialchars($_POST['content']);
         $category = $_POST['category'];
@@ -29,6 +27,25 @@ Class ThreadController extends Thread
         die();
     }
 
+    public function reply()
+    {
+
+        $postId = htmlspecialchars($_POST['postId']);
+        $userId = htmlspecialchars($_POST['userId']);
+        $content = htmlspecialchars($_POST['content']);
+
+        $_SESSION['errors'] = [];
+
+        if (empty($content)) {
+            array_push($_SESSION['errors'], 'Input all fields');    
+            redirect('/offtopic/content?id=' . $postId);
+        }
+
+        $this->setReply($postId, $userId, $content);
+        redirect('/offtopic/content?id=' . $postId);
+        
+    }
+
     private function emptyInput()
     {
         if (empty($_POST['title']) || empty($_POST['content'])){
@@ -39,5 +56,7 @@ Class ThreadController extends Thread
 
         return $result;
     }
+
+    
 
 }

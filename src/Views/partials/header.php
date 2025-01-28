@@ -32,26 +32,20 @@
             </form>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                <?php
-                    if (isset($_SESSION['userUid'])) {
-                    ?>
+                <?php if (isset($_SESSION['userUid'])) : ?>
                         <div class="dropstart">
-                            <a href="#" class="nav-link btn btn-light dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="" class="nav-link btn btn-light dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Menu
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="profile">View Profile <br><small style="color:rgb(95, 95, 95)"><?= 'u/' . $_SESSION['userUid'] ?></small></a></li>
+                                <li><a class="dropdown-item" href="profile">User <br><small style="color:rgb(95, 95, 95)"><?= 'u/' . $_SESSION['userUid'] ?></small></a></li>
                                 <li><a class="dropdown-item" href="create">Post</a></li>
                                 <li><a class="dropdown-item" href="logout" style="color: red;">Logout</a></li>
                             </ul>
                         </div>
-                    <?php
-                    } else {
-                    ?>
+                <?php else : ?>
                     <a href="auth" class="nav-link"> <?= 'Sign in' ?></a>
-                    <?php
-                    }
-                ?>
+                <?php endif ?>
                 </li>
             </ul>
         </div>

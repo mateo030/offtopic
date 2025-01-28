@@ -12,7 +12,7 @@ Class HomeController extends Thread
         $this->getAllThreads();
         loadPages('home');
     }
-    
+
     public function create()
     {
         loadPages('create');

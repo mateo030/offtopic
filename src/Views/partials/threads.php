@@ -8,9 +8,9 @@
 <tbody>
     <?php
         if (isset($_SESSION["threads"]) && !empty($_SESSION["threads"])) {
-            foreach($_SESSION["threads"] as $thread) {
+            foreach ($_SESSION["threads"] as $thread) {
                 ?>
-                <tr>
+                <tr style="border-left: 2px solid <?= color($thread['category']) ?>;">
                     <td class="text-start">
                         <a href="content?id=<?= $thread["post_id"]?>" class="text-decoration-none text-primary">
                             <?= $thread["title"] ?>

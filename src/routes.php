@@ -13,4 +13,4 @@ $router->get('/offtopic/logout', 'AuthController@logout');
 $router->get('/offtopic/content', 'HomeController@content');
 
 $router->post('/offtopic/create/submit', 'ThreadController@submit');
-$router->post('/offtopic/content/reply', 'ReplyController@reply');
+$router->post('/offtopic/content/reply', 'ThreadController@reply');
