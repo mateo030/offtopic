@@ -79,14 +79,14 @@ class Thread
 
     }
 
-    public function setReply($postId, $userId, $reply)
+    public function setReply($userId, $postId, $reply)
     {
 
         $query = "INSERT INTO replies (user_id, post_id, reply) VALUES (:user_id, :post_id, :reply)";
         $stmt = DB::connect()->prepare($query);
 
-        $stmt->bindParam(':post_id', $postId);
         $stmt->bindParam(':user_id', $userId);
+        $stmt->bindParam(':post_id', $postId);
         $stmt->bindParam(':reply', $reply);
 
         $stmt->execute();

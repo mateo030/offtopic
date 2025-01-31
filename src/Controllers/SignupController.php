@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 Use App\Models\Signup;
+use App\Framework\Validation;
 
 Class SignupController extends Signup
 {

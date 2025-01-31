@@ -30,9 +30,11 @@ Class ThreadController extends Thread
     public function reply()
     {
 
-        $postId = htmlspecialchars($_POST['postId']);
+        $queryString = htmlspecialchars($_POST['postId']);
         $userId = htmlspecialchars($_POST['userId']);
         $content = htmlspecialchars($_POST['content']);
+
+        list($query, $postId) = explode('=', $queryString);
 
         $_SESSION['errors'] = [];
 
@@ -41,7 +43,7 @@ Class ThreadController extends Thread
             redirect('/offtopic/content?id=' . $postId);
         }
 
-        $this->setReply($postId, $userId, $content);
+        $this->setReply($userId, $postId, $content);
         redirect('/offtopic/content?id=' . $postId);
         
     }

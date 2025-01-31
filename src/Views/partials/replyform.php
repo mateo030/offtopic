@@ -5,7 +5,7 @@
             <form action="content/reply" method="POST">
                 <div class="form-floating">
                     <input type="hidden" name="userId" value="<?= $_SESSION['userId'] ?>">
-                    <input type="hidden" name="postId" value="<?= $param ?>">
+                    <input type="hidden" name="postId" value="<?= $_SERVER['QUERY_STRING'] ?>">
                     <textarea class="form-control" name="content" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px"></textarea>
                     <label for="floatingTextarea">Reply to post</label>
                 </div>
