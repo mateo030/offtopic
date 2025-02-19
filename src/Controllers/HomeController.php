@@ -25,7 +25,10 @@ Class HomeController extends Thread
 
     public function content()
     {
-        loadPages('content');
+        list($param, $id) = explode("=", $_SERVER["QUERY_STRING"]);
+        $threadId = $this->getThreadById($id);
+        $replies = $this->getReplies($id);
+        loadPages('content', ['thread' => $threadId], ['replies' => $replies]);
     }
 
 }

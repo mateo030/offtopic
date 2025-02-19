@@ -11,8 +11,6 @@ Class SignupController extends Signup
     public function signupUser()
     {
 
-        session_start();
-
         $uid = htmlspecialchars($_POST['uid']);
         $email = htmlspecialchars($_POST['email']);
         $pwd = $_POST['pwd'];
@@ -20,26 +18,32 @@ Class SignupController extends Signup
 
         $_SESSION['errors'] = [];
 
+        
+
         if ($this->emptyInput($uid, $email, $pwd, $pwdRepeat) == false){
             array_push($_SESSION['errors'], 'Please input all fields');
             redirect('/offtopic/auth');
             die();
         }
+        
         if ($this->invalidUid($uid) == false){
             array_push($_SESSION['errors'], 'Username is invalid');
             redirect('/offtopic/auth');
             die();
         }
-        if ($this->invalidEmail($email) == false){
-            array_push($_SESSION['errors'], 'Email is invalid');
+
+        if (!Validation::email($email)) {
+            array_push($_SESSION['errors'], 'Please input a valid email');
             redirect('/offtopic/auth');
             die();
-        }
+        } 
+    
         if ($this->pwdMatch($pwd, $pwdRepeat) == false){
             array_push($_SESSION['errors'], 'Passwords do not match');
             redirect('/offtopic/auth');
             die();
         }
+
         if ($this->uidTakenCheck($uid, $email) == false){
             array_push($_SESSION['errors'], 'Username is already taken');
             redirect('/offtopic/auth');
@@ -69,17 +73,6 @@ Class SignupController extends Signup
             $result = false;
         }
         else {
-            $result = true;
-        }
-        return $result;
-    }
-
-    private function invalidEmail($email) {
-        $result = false;
-        // is FILTER_VALIDATE_EMAIL deprecated?
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $result = false;
-        } else {
             $result = true;
         }
         return $result;

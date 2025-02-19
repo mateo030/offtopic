@@ -38,7 +38,7 @@
                                 Menu
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="profile">User <br><small style="color:rgb(95, 95, 95)"><?= 'u/' . $_SESSION['userUid'] ?></small></a></li>
+                                <li><a class="dropdown-item" href="">User <br><small style="color:rgb(95, 95, 95)"><?= 'u/' . $_SESSION['userUid'] ?></small></a></li>
                                 <li><a class="dropdown-item" href="create">Post</a></li>
                                 <li><a class="dropdown-item" href="logout" style="color: red;">Logout</a></li>
                             </ul>

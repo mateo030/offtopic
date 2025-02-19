@@ -4,7 +4,9 @@ function redirect($dir) {
     Header('Location: ' . $dir);
 }
 
-function loadPages($path) {
+function loadPages($path, $originalPost = [], $replies = []) {
+    extract($originalPost);
+    extract($replies);
     require "src/Views/pages/$path.php";
 }
 

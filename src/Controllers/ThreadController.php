@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Thread;
 
-Class ThreadController extends Thread
+Class ThreadController
 {
 
     public function submit()
@@ -21,7 +21,9 @@ Class ThreadController extends Thread
             redirect('/offtopic/create');
         }
 
-        $this->setThread($_SESSION["userId"], $title, $content, $category);
+        $thread = new Thread();
+
+        $thread->setThread($_SESSION["userId"], $title, $content, $category);
 
         redirect('/offtopic/');
         die();
@@ -43,7 +45,9 @@ Class ThreadController extends Thread
             redirect('/offtopic/content?id=' . $postId);
         }
 
-        $this->setReply($userId, $postId, $content);
+        $thread = new Thread();
+
+        $thread->setReply($userId, $postId, $content);
         redirect('/offtopic/content?id=' . $postId);
         
     }
@@ -58,7 +62,5 @@ Class ThreadController extends Thread
 
         return $result;
     }
-
-    
 
 }

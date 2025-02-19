@@ -1,18 +1,9 @@
 <?php loadPartials('header'); ?>
-<?php
-
-use App\Controllers\ThreadController;
-list($id, $param) = explode('=', $_SERVER['QUERY_STRING']);
-$thread = ThreadController::getThreadById($param);
-$replies = ThreadController::getReplies($param);
-
-?>
-
 <!-- ### ORIGINAL POST ### -->
 <section class="py-4">
     <div class="container container-custom border-bottom">
         <div>
-            <h4><?= $thread['title'] ?></h4>
+            <h4><?= $thread['title']?></h4>
             <div class="p-flex">
                 <small class="text-primary"><?= $thread['users_uid'] ?></small>
                 <small><span class="text-secondary">Asked</span> <?= $thread['date_created'] ?></small>
